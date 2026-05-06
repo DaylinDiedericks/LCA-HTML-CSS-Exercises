@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery Page</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* FILTER BUTTONS */
+.filter-buttons {
+    text-align: center;
+    padding: 20px;
+}
+
+.filter-buttons button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active {
+    background: #ff6600;
+}
+
+/* GRID */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* TAG */
+.tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff6600;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+/* OVERLAY */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    transform: translateY(100%);
+    transition: 0.3s;
+    padding: 15px;
+}
+
+.card:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    margin: 0 0 5px;
+}
+
+/* HIDE */
+.hide {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="filter-buttons">
+    <button class="active" onclick="filterSelection('all')">All</button>
+    <button onclick="filterSelection('landscape')">Landscapes</button>
+    <button onclick="filterSelection('portrait')">Portraits</button>
+    <button onclick="filterSelection('architecture')">Architecture</button>
+</div>
+
+<div class="gallery">
+
+    <!-- LANDSCAPES -->
+    <div class="card landscape">
+        <img src="https://picsum.photos/400/300?1">
+        <div class="tag">Landscape</div>
+        <div class="overlay">
+            <h3>Mountain View</h3>
+            <p>Beautiful mountain scenery at sunset.</p>
+        </div>
+    </div>
+
+    <div class="card landscape">
+        <img src="https://picsum.photos/400/300?2">
+        <div class="tag">Landscape</div>
+        <div class="overlay">
+            <h3>Forest Path</h3>
+            <p>A peaceful walk through the woods.</p>
+        </div>
+    </div>
+
+    <div class="card landscape">
+        <img src="https://picsum.photos/400/300?3">
+        <div class="tag">Landscape</div>
+        <div class="overlay">
+            <h3>Ocean View</h3>
+            <p>Waves crashing against the shore.</p>
+        </div>
+    </div>
+
+    <div class="card landscape">
+        <img src="https://picsum.photos/400/300?4">
+        <div class="tag">Landscape</div>
+        <div class="overlay">
+            <h3>Desert Dunes</h3>
+            <p>Golden sand dunes under the sun.</p>
+        </div>
+    </div>
+
+    <!-- PORTRAITS -->
+    <div class="card portrait">
+        <img src="https://picsum.photos/400/300?5">
+        <div class="tag">Portrait</div>
+        <div class="overlay">
+            <h3>Smiling Woman</h3>
+            <p>Natural portrait with soft lighting.</p>
+        </div>
+    </div>
+
+    <div class="card portrait">
+        <img src="https://picsum.photos/400/300?6">
+        <div class="tag">Portrait</div>
+        <div class="overlay">
+            <h3>Man in Shadow</h3>
+            <p>Artistic low-light portrait.</p>
+        </div>
+    </div>
+
+    <div class="card portrait">
+        <img src="https://picsum.photos/400/300?7">
+        <div class="tag">Portrait</div>
+        <div class="overlay">
+            <h3>Young Girl</h3>
+            <p>Bright and joyful expression.</p>
+        </div>
+    </div>
+
+    <div class="card portrait">
+        <img src="https://picsum.photos/400/300?8">
+        <div class="tag">Portrait</div>
+        <div class="overlay">
+            <h3>Old Man</h3>
+            <p>Wisdom captured in a moment.</p>
+        </div>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="card architecture">
+        <img src="https://picsum.photos/400/300?9">
+        <div class="tag">Architecture</div>
+        <div class="overlay">
+            <h3>Modern Building</h3>
+            <p>Sleek lines and glass design.</p>
+        </div>
+    </div>
+
+    <div class="card architecture">
+        <img src="https://picsum.photos/400/300?10">
+        <div class="tag">Architecture</div>
+        <div class="overlay">
+            <h3>City Skyline</h3>
+            <p>Urban skyline at night.</p>
+        </div>
+    </div>
+
+    <div class="card architecture">
+        <img src="https://picsum.photos/400/300?11">
+        <div class="tag">Architecture</div>
+        <div class="overlay">
+            <h3>Bridge</h3>
+            <p>Engineering beauty across water.</p>
+        </div>
+    </div>
+
+    <div class="card architecture">
+        <img src="https://picsum.photos/400/300?12">
+        <div class="tag">Architecture</div>
+        <div class="overlay">
+            <h3>Historic Building</h3>
+            <p>Classic architecture from the past.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function filterSelection(category) {
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.remove("hide");
+
+        if (category !== "all" && !cards[i].classList.contains(category)) {
+            cards[i].classList.add("hide");
+        }
+    }
+
+    // active button highlight
+    let buttons = document.querySelectorAll(".filter-buttons button");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+}
+</script>
+
+</body>
+</html>
