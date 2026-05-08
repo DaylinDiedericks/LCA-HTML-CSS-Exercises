@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Animated Product Cards</title>
+
+<style>
+/* =========================
+   GLOBAL STYLES
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    padding:40px;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* =========================
+   LOADING SPINNER
+========================= */
+.loader{
+    width:70px;
+    height:70px;
+    border:8px solid #d9e2f0;
+    border-top:8px solid #2563eb;
+    border-radius:50%;
+    margin:0 auto 50px;
+
+    /* Rotation animation */
+    animation:spin 1s linear infinite;
+
+    /* Custom transform origin */
+    transform-origin:center center;
+}
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+    opacity:0;
+
+    /* Slide-in animation */
+    animation:slideIn 0.8s ease forwards;
+
+    /* Smooth transitions */
+    transition:
+        transform 0.4s ease,
+        background-color 0.4s ease,
+        box-shadow 0.4s ease,
+        width 0.4s ease,
+        opacity 0.4s ease;
+}
+
+/* Sequence animation delays */
+.card:nth-child(1){
+    animation-delay:0.2s;
+}
+.card:nth-child(2){
+    animation-delay:0.4s;
+}
+.card:nth-child(3){
+    animation-delay:0.6s;
+}
+.card:nth-child(4){
+    animation-delay:0.8s;
+}
+
+/* Hover animations */
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    background-color:#eef4ff;
+    box-shadow:0 14px 30px rgba(37,99,235,0.2);
+}
+
+/* Slide animation using translate */
+@keyframes slideIn{
+    from{
+        transform:translateX(-100px);
+        opacity:0;
+    }
+    to{
+        transform:translateX(0);
+        opacity:1;
+    }
+}
+
+/* =========================
+   ICON
+========================= */
+.icon{
+    font-size:50px;
+    display:inline-block;
+    margin-bottom:15px;
+    color:#2563eb;
+
+    transition:transform 0.5s ease;
+    transform-origin:bottom center;
+}
+
+/* Rotate transform */
+.card:hover .icon{
+    transform:rotate(20deg);
+}
+
+/* =========================
+   DECORATIVE ELEMENT
+========================= */
+.decor{
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    width:100px;
+    height:100px;
+    background:rgba(37,99,235,0.15);
+
+    /* Skew transform */
+    transform:skew(-20deg, -10deg);
+}
+
+/* =========================
+   CARD CONTENT
+========================= */
+h3{
+    margin-bottom:10px;
+    color:#1e293b;
+
+    transition:color 0.4s ease;
+}
+
+.card:hover h3{
+    color:#2563eb;
+}
+
+p{
+    color:#64748b;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+/* =========================
+   CTA BUTTON
+========================= */
+.btn{
+    display:inline-block;
+    padding:12px 24px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:bold;
+
+    /* Pulse animation */
+    animation:pulse 1.5s infinite;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Pause animation on hover */
+.btn:hover{
+    background:#1d4ed8;
+    transform:scale(1.1);
+    opacity:0.9;
+
+    animation-play-state:paused;
+}
+
+/* Pulse keyframes */
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Loading Spinner -->
+    <div class="loader"></div>
+
+    <!-- Product Cards -->
+    <div class="products">
+
+        <div class="card">
+            <div class="decor"></div>
+            <div class="icon">📱</div>
+            <h3>Smartphone</h3>
+            <p>High-performance mobile device with advanced features.</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="card">
+            <div class="decor"></div>
+            <div class="icon">💻</div>
+            <h3>Laptop</h3>
+            <p>Powerful laptop designed for productivity and gaming.</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="card">
+            <div class="decor"></div>
+            <div class="icon">⌚</div>
+            <h3>Smart Watch</h3>
+            <p>Track your fitness and notifications with style.</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="card">
+            <div class="decor"></div>
+            <div class="icon">🎧</div>
+            <h3>Headphones</h3>
+            <p>Experience immersive sound quality and comfort.</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
